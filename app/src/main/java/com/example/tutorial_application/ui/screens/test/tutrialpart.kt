@@ -1,6 +1,7 @@
 package com.example.tutorial_application.ui.screens.test
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -14,24 +15,47 @@ import com.example.tutorial_application.ui.theme.Tutorial_applicationTheme
 
 @Composable
 fun TestFunc(name: String, modifier: Modifier = Modifier) {
-    Surface(color = MaterialTheme.colorScheme.primary)
+    Surface(//呼び出し側のpaddingは呼び出される側で記述する
+        modifier = modifier.padding(24.dp))
     {
         Text(
             text = "Hello Test Func $name!",
-            modifier = modifier.padding(24.dp)
+            modifier = modifier
+                .background(Color.Red)
+                .padding(24.dp)
+
         )
+    }
+}
+
+@Composable
+fun MyTutrialApp(modifier: Modifier = Modifier) {
+    Surface(
+        color = Color.LightGray,
+        modifier = modifier.padding(24.dp)
+    ) {
+        TestFunc("android develop");
+    }
+}
+
+@Composable
+fun MyTutrialApp2(modifier: Modifier = Modifier) {
+    Surface(color = Color.Blue) {
+        MyTutrialApp();
     }
 }
 
 //modifier　見た目や振る舞いを変更するためのオブジェクト
 //UIの定義でパラメータとして渡してあげることでこの関数の呼び出し元でもレイアウトや装飾をカスタムできる
-@Preview(
+@Preview
 //    showBackground = true,
 //    showSystemUi = true
-)
+
 @Composable
 fun TestPreview() {
     Tutorial_applicationTheme {
-        TestFunc("tutrial")
+//        TestFunc("tutrial")
+//        MyTutrialApp();
+          MyTutrialApp2();
     }
 }
