@@ -15,8 +15,9 @@ import com.example.tutorial_application.ui.theme.Tutorial_applicationTheme
 
 @Composable
 fun TestFunc(name: String, modifier: Modifier = Modifier) {
-    Surface(//呼び出し側のpaddingは呼び出される側で記述する
-        modifier = modifier.padding(24.dp))
+    Surface(
+        modifier = modifier.padding(24.dp)
+        )
     {
         Text(
             text = "Hello Test Func $name!",
