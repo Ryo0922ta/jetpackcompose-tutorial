@@ -41,23 +41,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tutorial_application.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginWidget(modifier: Modifier = Modifier) {
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "LOG IN",
-                        style = TextStyle(
-                            color = Color.Black,
-                            fontSize = 30.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                },
-            )
+            LoginTopAppBar()
         }
     ) { innerPadding ->
         Column(
@@ -65,10 +53,11 @@ fun LoginWidget(modifier: Modifier = Modifier) {
                 .padding(innerPadding),
         ) {
             Text(
-                modifier = Modifier.padding(
-                    start = 15.dp,
-                    bottom = 104.dp
-                ),
+                modifier = Modifier.fillMaxWidth()
+                    .padding(
+                        start = 16.dp,
+                        bottom = 64.dp
+                    ),
                 text = "必要なログイン情報をご入力ください",
             )
             InputTextField()
@@ -88,6 +77,23 @@ fun LoginWidget(modifier: Modifier = Modifier) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LoginTopAppBar() {
+    TopAppBar(
+        title = {
+            Text(
+                text = "LOG IN",
+                style = TextStyle(
+                    color = Color.Black,
+                    fontSize = 30.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            )
+        },
+    )
+}
+
 @Composable
 fun InputTextField() {
     var userId by rememberSaveable { mutableStateOf("") }
@@ -101,26 +107,31 @@ fun InputTextField() {
     {
 
         Text(
-            modifier = Modifier.padding(
-                end = 265.dp
-            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = 16.dp
+                ),
             text = "ユーザーID",
         )
         OutlinedTextField(
             value = userId,
             onValueChange = { userId = it },
             shape = RoundedCornerShape(10.dp),
-            modifier = Modifier
-                .height(53.dp)
-                .width(344.dp)
+            modifier = Modifier.fillMaxWidth()
+                .padding(
+                    horizontal = 16.dp
+                )
         )
 
         Spacer(modifier = Modifier.height(19.dp))
 
         Text(
-            modifier = Modifier.padding(
-                end = 265.dp
-            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = 16.dp
+                ),
             text = "パスワード",
         )
         OutlinedTextField(
@@ -128,9 +139,10 @@ fun InputTextField() {
             onValueChange = { password = it },
             visualTransformation = PasswordVisualTransformation(),
             shape = RoundedCornerShape(10.dp),
-            modifier = Modifier
-                .height(53.dp)
-                .width(344.dp)
+            modifier = Modifier.fillMaxWidth()
+                .padding(
+                    horizontal = 16.dp
+                )
         )
     }
 }
@@ -138,7 +150,7 @@ fun InputTextField() {
 @Composable
 fun LoginButton() {
 
-    Column(modifier = Modifier.padding(start = 15.dp)) {
+    Column{
         Button(
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFC6A457) // ボタンの背景色を指定
@@ -147,9 +159,11 @@ fun LoginButton() {
                 TODO("ログイン処理をここに実装してください")
             },
             shape = RoundedCornerShape(12.dp),
-            modifier = Modifier
-                .height(53.dp)
-                .width(344.dp)
+            modifier = Modifier.fillMaxWidth()
+                .padding(
+                    horizontal = 32.dp
+                )
+                .height(50.dp)
         ) {
             Text(
                 text = "ログイン",
@@ -163,10 +177,10 @@ fun LoginButton() {
 fun OrDivider() {
 
     Column(
-        modifier = Modifier.padding(
-            start = 15.dp,
-            end = 35.dp
-        )
+        modifier = Modifier.fillMaxWidth()
+            .padding(
+                horizontal = 32.dp
+            )
     ) {
         Row(
             modifier = Modifier.padding(vertical = 24.dp),
@@ -181,15 +195,16 @@ fun OrDivider() {
 
 @Composable
 fun LoginButtonByGoogle() {
-    Column(modifier = Modifier.padding(start = 15.dp)) {
+    Column{
         OutlinedButton(
             onClick = {
-                /* ボタンがクリックされたときの処理 */
+                TODO("google ログイン処理をここに実装")
             },
             shape = RoundedCornerShape(12.dp),
-            modifier = Modifier
-                .height(53.dp)
-                .width(344.dp)
+            modifier = Modifier.fillMaxWidth()
+                .padding(
+                    horizontal = 32.dp
+                )
         ) {
             Image(
                 painter = painterResource(id = R.drawable.icons8_google_96), // 追加した画像を指定
@@ -207,15 +222,16 @@ fun LoginButtonByGoogle() {
 
 @Composable
 fun LoginButtonByMail() {
-    Column(modifier = Modifier.padding(start = 15.dp)) {
+    Column{
         OutlinedButton(
             onClick = {
-                /* ボタンがクリックされたときの処理 */
+                TODO("mail ログイン処理をここに実装")
             },
             shape = RoundedCornerShape(12.dp),
-            modifier = Modifier
-                .height(53.dp)
-                .width(344.dp)
+            modifier = Modifier.fillMaxWidth()
+                .padding(
+                    horizontal = 32.dp
+                )
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
@@ -251,7 +267,7 @@ fun SignUpWithLink() {
         )
         addStringAnnotation(
             tag = "URL",
-            annotation = "#", // 遷移先のURLを指定
+            annotation = "#", // 遷移先の画面を指定
             start = start,
             end = length
         )
@@ -274,7 +290,6 @@ fun SignUpWithLink() {
 
     }
 }
-
 
 @Preview(device = Devices.PIXEL_7)
 @Composable
