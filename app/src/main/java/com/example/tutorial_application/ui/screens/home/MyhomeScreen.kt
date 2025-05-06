@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -17,10 +18,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,16 +27,27 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.tutorial_application.data.TodoItem
+import com.example.tutorial_application.viewmodel.TodoViewModel
 
 @Composable
-fun MyHomeScreenWidget() {
+fun MyHomeScreenWidget(viewModel: TodoViewModel) {
+    val todos by viewModel.todos
+    val text by viewModel.text
 
     Scaffold(
         topBar = {
             HomeTopAppBar()
         }
     ) { innerPadding ->
-        ToDoListView(innerPadding)
+        ToDoListView(
+            paddingValues = innerPadding,
+            todos = todos,
+            text = text,
+            onTextChange = viewModel::onTextChange,
+            onAddTodo = viewModel::addTodo,
+            onToggleTodo = viewModel::toggleTodo
+        )
     }
 
 }
@@ -62,15 +70,20 @@ fun HomeTopAppBar() {
 }
 
 @Composable
-fun ToDoListView(paddingValues: PaddingValues) {
-    val todoList = remember { mutableStateListOf<String>() }
-    var text by remember { mutableStateOf("") }
-    val checkedStates = remember { mutableStateListOf<Boolean>() }
+fun ToDoListView(
+    paddingValues: PaddingValues,
+    todos: List<TodoItem>,
+    text: String,
+    onTextChange: (String) -> Unit,
+    onAddTodo: () -> Unit,
+    onToggleTodo: (Int) -> Unit
+) {
+
 
     Column(modifier = Modifier.padding(paddingValues)) {
         //weight(1f) : 親のコンテナ内で 残りのスペースを1:1の比率で占める
         LazyColumn(modifier = Modifier.weight(1f)) {
-            items(todoList.size) { index ->
+            itemsIndexed(todos) { index, item ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -78,11 +91,11 @@ fun ToDoListView(paddingValues: PaddingValues) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Checkbox(
-                        checked = checkedStates[index],
-                        onCheckedChange = { checkedStates[index] = it }
+                        checked = item.isDone,
+                        onCheckedChange = { onToggleTodo(index) }
                     )
                     Text(
-                        text = todoList[index],
+                        text = item.title,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 4.dp)
@@ -97,19 +110,14 @@ fun ToDoListView(paddingValues: PaddingValues) {
         ) {
             OutlinedTextField(
                 value = text,
-                onValueChange = { text = it },
+                onValueChange = onTextChange,
                 label = { Text("TODO") },
                 modifier = Modifier
                     .wrapContentHeight()
                     .weight(1f)
             )
             Button(
-                onClick = {
-                    if (text.isEmpty()) return@Button
-                    todoList.add(text)
-                    checkedStates.add(false)
-                    text = ""
-                },
+                onClick = onAddTodo,
                 modifier = Modifier.height(64.dp)
                 //form欄とボタンの縦幅が同じで見え方にズレがないため今回はalignは不要
             ) {
@@ -124,9 +132,29 @@ fun ToDoListView(paddingValues: PaddingValues) {
 
 }
 
+@Composable
+fun HyHomeScreenViewWidgetPreview(){
+    Scaffold(
+        topBar = {
+            HomeTopAppBar()
+        }
+    ) { innerPadding ->
+        ToDoListView(
+            paddingValues = innerPadding,
+            todos = listOf(
+                TodoItem(id = 1, title = "買い物へ行く", isDone = false),
+                TodoItem(id = 2, title = "宿題をする", isDone = true)
+            ),
+            text = "本を読む",
+            onTextChange = {},
+            onAddTodo = {},
+            onToggleTodo = {}
+        )
+    }
+}
 
 @Preview(device = Devices.PIXEL_7)
 @Composable
 fun MyHomeScreenViewPreview() {
-    MyHomeScreenWidget()
+    HyHomeScreenViewWidgetPreview()
 }
