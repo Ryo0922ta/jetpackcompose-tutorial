@@ -1,4 +1,4 @@
-package com.example.tutorial_application.ui.screens.login
+package com.example.tutorial_application.presentation.view.testui.screens.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -52,7 +52,8 @@ fun LoginWidget(modifier: Modifier = Modifier) {
                 .padding(innerPadding),
         ) {
             Text(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(
                         start = 16.dp,
                         bottom = 64.dp
@@ -117,7 +118,8 @@ fun InputTextField() {
             value = userId,
             onValueChange = { userId = it },
             shape = RoundedCornerShape(10.dp),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(
                     horizontal = 16.dp
                 )
@@ -138,7 +140,8 @@ fun InputTextField() {
             onValueChange = { password = it },
             visualTransformation = PasswordVisualTransformation(),
             shape = RoundedCornerShape(10.dp),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(
                     horizontal = 16.dp
                 )
@@ -149,7 +152,7 @@ fun InputTextField() {
 @Composable
 fun LoginButton() {
 
-    Column{
+    Column {
         Button(
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFC6A457) // ボタンの背景色を指定
@@ -158,7 +161,8 @@ fun LoginButton() {
                 TODO("ログイン処理をここに実装してください")
             },
             shape = RoundedCornerShape(12.dp),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(
                     horizontal = 32.dp
                 )
@@ -176,7 +180,8 @@ fun LoginButton() {
 fun OrDivider() {
 
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .padding(
                 horizontal = 32.dp
             )
@@ -194,13 +199,14 @@ fun OrDivider() {
 
 @Composable
 fun LoginButtonByGoogle() {
-    Column{
+    Column {
         OutlinedButton(
             onClick = {
                 TODO("google ログイン処理をここに実装")
             },
             shape = RoundedCornerShape(12.dp),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(
                     horizontal = 32.dp
                 )
@@ -221,13 +227,14 @@ fun LoginButtonByGoogle() {
 
 @Composable
 fun LoginButtonByMail() {
-    Column{
+    Column {
         OutlinedButton(
             onClick = {
                 TODO("mail ログイン処理をここに実装")
             },
             shape = RoundedCornerShape(12.dp),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(
                     horizontal = 32.dp
                 )

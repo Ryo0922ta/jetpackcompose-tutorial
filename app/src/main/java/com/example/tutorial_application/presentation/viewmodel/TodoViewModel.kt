@@ -1,11 +1,12 @@
-package com.example.tutorial_application.viewmodel
+package com.example.tutorial_application.presentation.viewmodel
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.tutorial_application.data.TodoItem
-import com.example.tutorial_application.repository.TodoRepository
+import com.example.tutorial_application.domain.model.TodoItem
+import com.example.tutorial_application.domain.usecase.AddMockTodoUseCase
+import com.example.tutorial_application.domain.usecase.GetMockTodoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -13,7 +14,8 @@ import javax.inject.Inject
 //@HiltViewModel:hiltにこのviewModelに依存性を注入することを伝える
 @HiltViewModel
 class TodoViewModel @Inject constructor(
-    private val repository: TodoRepository
+    private val getTodoUseCase: GetMockTodoUseCase,
+    private val addTodoUseCase: AddMockTodoUseCase
 ) : ViewModel() {
     //  _todosの「 _ 」:プライベート変数につける印。内部のみで利用する変数につける
     private val _todos = mutableStateOf<List<TodoItem>>(emptyList())
@@ -27,7 +29,7 @@ class TodoViewModel @Inject constructor(
     init {
 //       非同期でリポジトリからデータを取得
         viewModelScope.launch {
-            _todos.value = repository.getTodo()
+            _todos.value = getTodoUseCase()
         }
     }
 
@@ -39,8 +41,8 @@ class TodoViewModel @Inject constructor(
         val title = _text.value.trim()
         if (title.isNotEmpty()) {
             viewModelScope.launch {
-                repository.addTodo(title)
-                _todos.value = repository.getTodo()
+                addTodoUseCase(title)
+                _todos.value = getTodoUseCase()
                 _text.value = ""
             }
 

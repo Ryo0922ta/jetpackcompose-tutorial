@@ -1,6 +1,7 @@
-package com.example.tutorial_application.repository
+package com.example.tutorial_application.data.repositoryimpl
 
-import com.example.tutorial_application.data.TodoItem
+import com.example.tutorial_application.domain.model.TodoItem
+import com.example.tutorial_application.domain.repository.TodoRepository
 import javax.inject.Inject
 
 //inject:日本語で注射である。つまり依存性の注入をここで示している

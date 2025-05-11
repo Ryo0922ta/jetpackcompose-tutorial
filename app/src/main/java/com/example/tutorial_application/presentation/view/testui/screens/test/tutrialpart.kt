@@ -1,9 +1,7 @@
-package com.example.tutorial_application.ui.screens.test
+package com.example.tutorial_application.presentation.view.testui.screens.test
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,13 +9,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.tutorial_application.ui.theme.Tutorial_applicationTheme
+import com.example.tutorial_application.presentation.view.testui.theme.Tutorial_applicationTheme
 
 @Composable
 fun TestFunc(name: String, modifier: Modifier = Modifier) {
     Surface(
         modifier = modifier.padding(24.dp)
-        )
+    )
     {
         Text(
             text = "Hello Test Func $name!",
@@ -57,6 +55,6 @@ fun TestPreview() {
     Tutorial_applicationTheme {
 //        TestFunc("tutrial")
 //        MyTutrialApp();
-          MyTutrialApp2();
+        MyTutrialApp2();
     }
 }

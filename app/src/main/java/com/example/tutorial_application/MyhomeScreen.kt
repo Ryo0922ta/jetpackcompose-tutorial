@@ -1,4 +1,4 @@
-package com.example.tutorial_application.ui.screens.home
+package com.example.tutorial_application
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -27,8 +27,8 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.tutorial_application.data.TodoItem
-import com.example.tutorial_application.viewmodel.TodoViewModel
+import com.example.tutorial_application.domain.model.TodoItem
+import com.example.tutorial_application.presentation.viewmodel.TodoViewModel
 
 @Composable
 fun MyHomeScreenWidget(viewModel: TodoViewModel) {
@@ -133,7 +133,7 @@ fun ToDoListView(
 }
 
 @Composable
-fun HyHomeScreenViewWidgetPreview(){
+fun HyHomeScreenViewWidgetPreview() {
     Scaffold(
         topBar = {
             HomeTopAppBar()

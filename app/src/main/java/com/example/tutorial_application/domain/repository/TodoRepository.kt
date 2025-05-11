@@ -1,6 +1,6 @@
-package com.example.tutorial_application.repository
+package com.example.tutorial_application.domain.repository
 
-import com.example.tutorial_application.data.TodoItem
+import com.example.tutorial_application.domain.model.TodoItem
 
 interface TodoRepository {
     suspend fun getTodo(): List<TodoItem>

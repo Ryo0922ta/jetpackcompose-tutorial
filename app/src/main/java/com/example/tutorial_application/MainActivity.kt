@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.tutorial_application.ui.screens.home.TodoListScreenWrapper
-import com.example.tutorial_application.ui.screens.test.MyTutrialApp
-import com.example.tutorial_application.ui.theme.Tutorial_applicationTheme
+import com.example.tutorial_application.presentation.view.todo.TodoListScreenWrapper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

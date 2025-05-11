@@ -1,6 +1,5 @@
-package com.example.tutorial_application.ui.theme
+package com.example.tutorial_application.presentation.view.testui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

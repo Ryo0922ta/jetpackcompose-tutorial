@@ -1,4 +1,4 @@
-package com.example.tutorial_application.ui.screens.test
+package com.example.tutorial_application.presentation.view.testui.screens.test
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

@@ -1,4 +1,4 @@
-package com.example.tutorial_application.ui.screens.test
+package com.example.tutorial_application.presentation.view.testui.screens.test
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,7 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.tutorial_application.ui.theme.Tutorial_applicationTheme
+import com.example.tutorial_application.presentation.view.testui.theme.Tutorial_applicationTheme
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {

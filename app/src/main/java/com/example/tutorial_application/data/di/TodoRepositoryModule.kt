@@ -1,7 +1,7 @@
-package com.example.tutorial_application.di
+package com.example.tutorial_application.data.di
 
-import com.example.tutorial_application.repository.MockTodoRepositoryImpl
-import com.example.tutorial_application.repository.TodoRepository
+import com.example.tutorial_application.data.repositoryimpl.MockTodoRepositoryImpl
+import com.example.tutorial_application.domain.repository.TodoRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
