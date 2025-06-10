@@ -5,6 +5,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.tutorial_application.presentation.view.testpager.ModalMainScreen
 import com.example.tutorial_application.presentation.view.testui.screens.test.Screen2
 import com.example.tutorial_application.presentation.view.testui.screens.test.TestModal
 import com.example.tutorial_application.presentation.viewmodel.TestDetailViewModel
@@ -18,7 +19,10 @@ fun AppNavGraph(navController: NavHostController) {
             TestModal(navController, testDetailViewModel)
         }
         composable("screen2") {
-            Screen2(testDetailViewModel)
+            Screen2(navController, testDetailViewModel)
+        }
+        composable("screen3") {
+            ModalMainScreen()
         }
     }
 }
